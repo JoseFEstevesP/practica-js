@@ -1,0 +1,31 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Color picker</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<main class="contentColor" id="contentColor">
+			<header class="selectColor">
+				<label for="color" class="selectColor__label">Color picker</label>
+				<input
+					id="color"
+					type="color"
+					class="selectColor__inputColor"
+					value="#23B340"
+				/>
+				<button class="selectColor__btn" id="btn">Visualizar</button>
+			</header>
+			<footer class="viewColor">
+				<p class="viewColor__text">#23b340</p>
+				<div class="viewColor__colorBg" style="background-color: #23b340"></div>
+			</footer>
+		</main>
+		<script src="main.js"></script>
+	</body>
+</html>

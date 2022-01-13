@@ -4,22 +4,24 @@ const lista = document.getElementById('lista');
 const liTemplete = document.getElementById('liTemplete');
 const fragment = document.createDocumentFragment();
 const cartBtn = document.querySelectorAll('.card__btn');
-const carritoObjeto = {};
+const carritoArray = [];
 const addToCart = e => {
 	const productos = {
 		titulo: e.target.dataset.fruta,
 		id: e.target.dataset.fruta,
 		cantidad: 1,
 	};
-	if (carritoObjeto.hasOwnProperty(productos.titulo)) {
-		productos.cantidad = carritoObjeto[productos.titulo].cantidad + 1;
+	const index = carritoArray.findIndex(i => i.id === productos.id);
+	if (index === -1) {
+		carritoArray.push(productos);
+	} else {
+		carritoArray[index].cantidad++;
 	}
-	carritoObjeto[productos.titulo] = productos;
 	pintarCarrito();
 };
 const pintarCarrito = () => {
 	lista.textContent = '';
-	Object.values(carritoObjeto).forEach(item => {
+	carritoArray.forEach(item => {
 		const clone = liTemplete.content.firstElementChild.cloneNode(true);
 		clone.querySelector('.liProduct__product').textContent = item.titulo;
 		clone.querySelector('.liProduct__amount').textContent = item.cantidad;

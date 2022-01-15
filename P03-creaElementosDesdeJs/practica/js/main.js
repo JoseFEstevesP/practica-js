@@ -1,6 +1,10 @@
-// maneras de delegar eventos es js
-const contentp = document.getElementById('contentp');
-contentp.addEventListener('click',e=>{
+// maneras de delegar eventos en js capturando el contenedor padre
+// const contentp = document.getElementById('contentp');
+// contentp.addEventListener('click',e=>{
+// maneras de delegar eventos en js capturando el documento
+// document.addEventListener('click',e=>{
+// maneras de delegar eventos en js capturando el documento espesificando el contenedor body
+document.body.addEventListener('click',e=>{
 //======= esta es una de las forma detectondo la clace con el contains
 // 	if (e.target.classList.contains('content--Bcolor2')) {
 // 	console.log('diste click al hijo con el metodo contains');

@@ -1,5 +1,3 @@
-/** @format */
-
 const list = document.getElementById('lista');
 const templeteLi = document.getElementById('liTemplete').content;
 const fragment = document.createDocumentFragment();

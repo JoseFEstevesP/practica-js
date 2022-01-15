@@ -1,30 +1,20 @@
-const list = document.getElementById('lista');
-const templeteLi = document.getElementById('liTemplete').content;
-const fragment = document.createDocumentFragment();
-const cartObjet = {};
-const addToCart = e => {
-	const product = {
-		title: e.target.dataset.fruta,
-		amount: 1,
-	};
-	if (cartObjet.hasOwnProperty(product.title)) {
-		product.amount = cartObjet[product.title].amount + 1;
-	}
-	cartObjet[product.title] = product;
-	printCart();
-};
-const printCart = () => {
-	list.textContent = '';
-	Object.values(cartObjet).forEach(item => {
-		const clone = templeteLi.firstElementChild.cloneNode(true);
-		clone.querySelector('.liProduct__product').textContent = item.title;
-		clone.querySelector('.liProduct__amount').textContent = item.amount;
-		fragment.appendChild(clone);
-	});
-	list.appendChild(fragment);
-};
-document.body.addEventListener('click', e => {
-	if (e.target.classList.contains('card__btn')) {
-		addToCart(e);
-	}
-});
+// maneras de delegar eventos es js
+const contentp = document.getElementById('contentp');
+contentp.addEventListener('click',e=>{
+//======= esta es una de las forma detectondo la clace con el contains
+// 	if (e.target.classList.contains('content--Bcolor2')) {
+// 	console.log('diste click al hijo con el metodo contains');
+// }
+// ==== mediante su id
+if (e.target.id === 'contentp'){
+	console.log('diste click al padre mediante su ID');
+}
+// ==== mediante su matches
+if (e.target.matches('.content--Bcolor1')){
+	console.log('diste click al hijo mediante matches');
+}
+// ==== mediante su data-set
+if (e.target.dataset['div'] === 'nieto'){
+	console.log('diste click al nieto mediante su data-set');
+}
+})

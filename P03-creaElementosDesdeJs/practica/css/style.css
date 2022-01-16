@@ -1,4 +1,4 @@
-/* *,
+*,
 *::after,
 *::before {
 	box-sizing: border-box;
@@ -109,24 +109,4 @@ margin-bottom: 0.625rem;
 	place-items: center;
 	background-color: blue;
 	border-radius: 50%;
-} */
-body{
-	margin: 0;
-	width: 100%;
-min-height: 100vh;
-	display:grid;
-	place-items: center;
-}
-.content{
-	display: grid;
-	place-items: center;
-width: 70%;
-height: 70%;
-border: 2px solid #333;
-}
-.content--Bcolor1{
-border: 2px solid blue;
-}
-.content--Bcolor2{
-	border: 2px solid red;
 }

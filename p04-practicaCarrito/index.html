@@ -1,0 +1,81 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>practica</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<h1 class="title">Practica carrito de compra</h1>
+		<main class="contentMain">
+			<header class="contentMain__header">
+				<article class="card">
+					<h2 class="card__title">Fresa 🍓</h2>
+					<p class="card__price">$300</p>
+					<button class="card__btn" data-precio="300" data-fruta="Fresa">
+						Add
+					</button>
+				</article>
+				<article class="card">
+					<h2 class="card__title">Banana 🍌</h2>
+					<p class="card__price">$100</p>
+					<button class="card__btn" data-precio="100" data-fruta="Banana">
+						Add
+					</button>
+				</article>
+				<article class="card">
+					<h2 class="card__title">Manzana 🍏</h2>
+					<p class="card__price">$200</p>
+					<button class="card__btn" data-precio="200" data-fruta="Manzana">
+						Add
+					</button>
+				</article>
+			</header>
+			<footer class="contentMain__footer">
+				<article class="lista">
+					<h2 class="lista__tilte">Lista de compra</h2>
+					<ul class="lista__ul" id="lista">
+						<template id="liTemplete">
+						<li class="liProduct">
+							<div class="liProduct__contentNameAmount">
+								<span class="liProduct__amount">1</span>
+								<span class="liProduct__product">banan</span>
+							</div>
+							<div class="liProduct__contentPrAdDl">
+								<p class="liProduct__ContentPrecio">
+									Total: $<span class="liProduct__precio">300</span>
+								</p>
+								<div class="liProduct__contentBtn">
+									<button class="liProduct__btn liProduct__btn--add">
+										Agregar
+									</button>
+									<button class="liProduct__btn liProduct__btn--delite">
+										Quitr
+									</button>
+								</div>
+							</div>
+						</li>
+						</template>
+					</ul>
+					<article class="lista__footer" id="listaFooter">
+						<template id="TotalPrecio">
+						<div class="footerTotal">
+							<p class="footerTotal__contentTotalPrecio">
+								Total: $<span class="footerTotal__precio">300</span>
+							</p>
+							<div class="footerTotal__contentBtn">
+								<button class="footerTotal__btn">Finalizar Compra</button>
+							</div>
+						</div>
+						</template>
+					</article>
+				</article>
+			</footer>
+		</main>
+		<script src="js/main.js"></script>
+	</body>
+</html>

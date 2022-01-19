@@ -1,21 +1,35 @@
-/** @format */
-
+// contenedores
 const lista = document.getElementById('lista');
+const footerCompra = document.getElementById('footerCompra');
+// template
 const liTemplete = document.getElementById('liTemplete');
-const listaFooter = document.getElementById('listaFooter');
-const TotalPrecio = document.getElementById('TotalPrecio');
+const TotalPrecioTemplate = document.getElementById('TotalPrecioTemplate');
+// fragment
 const fragment = document.createDocumentFragment();
+
+document.body.addEventListener('click', e => {
+	if (e.target.classList.contains('card__btn')) {
+		agregarAlCarrito(e);
+	}
+	if (e.target.classList.contains('liProduct__btn--add')) {
+		btnAumentar(e);
+	}
+	if (e.target.classList.contains('liProduct__btn--delite')) {
+		btnDisminuir(e);
+	}
+});
 let carritoArray = [];
-const addToCart = e => {
-	const productos = {
+
+const agregarAlCarrito = e => {
+	const producto = {
 		titulo: e.target.dataset.fruta,
 		id: e.target.dataset.fruta,
-		cantidad: 1,
 		precio: parseInt(e.target.dataset.precio),
+		cantidad: 1
 	};
-	const index = carritoArray.findIndex(i => i.id === productos.id);
+	const index = carritoArray.findIndex(i => i.id === producto.id);
 	if (index === -1) {
-		carritoArray.push(productos);
+		carritoArray.push(producto);
 	} else {
 		carritoArray[index].cantidad++;
 	}
@@ -24,7 +38,8 @@ const addToCart = e => {
 const pintarCarrito = () => {
 	lista.textContent = '';
 	carritoArray.forEach(item => {
-		const clone = liTemplete.content.cloneNode(true);
+		// const clone = liTemplete.content.cloneNode(true); si en el template esta dividida su escructura en diferentes contenedores se qta el firstElementChild 
+		const clone = liTemplete.content.firstElementChild.cloneNode(true);
 		clone.querySelector('.liProduct__product').textContent = item.titulo;
 		clone.querySelector('.liProduct__amount').textContent = item.cantidad;
 		clone.querySelector('.liProduct__precio').textContent =
@@ -37,14 +52,16 @@ const pintarCarrito = () => {
 	pintarFooter();
 };
 const pintarFooter = () => {
-	listaFooter.textContent = '';
+	footerCompra.textContent = '';
 	const total = carritoArray.reduce(
 		(acc, current) => acc + current.precio * current.cantidad,
 		0
 	);
-	const clone = TotalPrecio.content.cloneNode(true);
+	const clone = TotalPrecioTemplate.content.cloneNode(true);
 	clone.querySelector('.footerTotal__precio').textContent = total;
-	listaFooter.appendChild(clone);
+	if(total !== 0){
+		footerCompra.appendChild(clone);
+	}
 };
 const btnAumentar = e => {
 	carritoArray.map(item => {
@@ -56,13 +73,10 @@ const btnAumentar = e => {
 	pintarCarrito();
 };
 const btnDisminuir = e => {
-	carritoArray.filter(item => {
+	carritoArray = carritoArray.filter(item => {
 		if (item.id === e.target.dataset.id) {
 			if (item.cantidad > 0) {
 				item.cantidad--;
-				console.log(item.cantidad === 0);
-				console.log(item.cantidad);
-				console.log(item);
 				if (item.cantidad === 0) return;
 				return item;
 			}
@@ -72,14 +86,3 @@ const btnDisminuir = e => {
 	});
 	pintarCarrito();
 };
-document.body.addEventListener('click', e => {
-	if (e.target.classList.contains('card__btn')) {
-		addToCart(e);
-	}
-	if (e.target.classList.contains('liProduct__btn--add')) {
-		btnAumentar(e);
-	}
-	if (e.target.classList.contains('liProduct__btn--delite')) {
-		btnDisminuir(e);
-	}
-});

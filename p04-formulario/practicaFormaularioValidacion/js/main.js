@@ -1,11 +1,6 @@
 /** @format */
 
 const form = document.getElementById('form');
-const contentInputUser = document.getElementById('contentInputUser');
-const contentInputEmail = document.getElementById('contentInputEmail');
-const formMsgUser = document.getElementById('formMsgUser');
-const submit = document.getElementById('submit');
-const formMsgEmail = document.getElementById('formMsgEmail');
 const validacion = {
 	UserName: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
 	UserEmail:
@@ -15,25 +10,26 @@ const validacion = {
 form.addEventListener('submit', e => {
 	e.preventDefault();
 	const { userName, userEmail } = e.target;
+	const contentInputs = e.target.firstElementChild
 	functionValidacion(
 		validacion.UserName,
 		userName.value,
-		contentInputUser,
-		formMsgUser
+		contentInputs,
+		contentInputs.lastElementChild
 	);
 	functionValidacion(
 		validacion.UserEmail,
 		userEmail.value,
-		contentInputEmail,
-		formMsgEmail
+		contentInputs.nextElementSibling,
+		contentInputs.nextElementSibling.lastElementChild
 	);
 	if (
 		validacion.UserName.test(userName.value) &&
 		validacion.UserEmail.test(userEmail.value)
 	) {
-		submit.classList.add('form__content--submit--show');
+		e.target.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.classList.add('form__content--submit--show');
 	} else {
-		submit.classList.remove('form__content--submit--show');
+		e.target.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove('form__content--submit--show');
 	}
 });
 const functionValidacion = (

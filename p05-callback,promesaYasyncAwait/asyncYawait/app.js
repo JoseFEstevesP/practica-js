@@ -1,5 +1,3 @@
-/** @format */
-
 import posts from '../main.js';
 const findPostById = id =>
 	new Promise((resolve, reject) => {

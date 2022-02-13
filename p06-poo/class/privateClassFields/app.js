@@ -17,20 +17,18 @@ class Persona {
 	}
 }
 class Estudiantes extends Persona {
-	constructor(nombre, edda, notas = []) {
-		super(nombre, edda); 
-		this.notas = notas;
-	}
+	#notas = [];//<- de esta manera ese declara las propiedaddes privadas
 	set setNotas(nota) {
-		this.notas.push(nota);
+		this.#notas.push(nota);
 	}
 	get getNotas() {
-		return this.notas;
-	}
-	saludar() {
-		return `${this.nombre} dice hola desde estudiantes`;
+		return this.#notas;
 	}
 }
 const userName = new Estudiantes('ale', 21);
-
+userName.setNotas = 2
+userName.setNotas = 5
+userName.setNotas = 10
+console.log(userName.getNotas);
 console.log(userName);
+// console.log(userName.#notas);//<- de esta manera da error ya que no se puede pintar de esta manera las propiedades privadas

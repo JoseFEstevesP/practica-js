@@ -1,24 +1,52 @@
-// exprecion regular
-// const regExp = /jose/i;
-// instaciar un ojueto de expecion regular
-// esto es lo mismo q poner esto --> /exprecion/i
-// const regExpobjeto = new RegExp('jose', 'i')
-// console.log(regExp.test('jose dawdwdd'));//true
-// console.log(regExp.test('jssssose dawdwdd'));//false
-// const regExp = /[je]/i;//busca lo q esta entre los corchetes
-// console.log(regExp.test(' dffef jgthdthdth  yjyjyje'));//true
-// const regExp = /jose|josé/i;//encuentra la exprecion si se escribe de una manera o de otra eso significa la barra
-// console.log(regExp.test('josé o jose'));//true, en abas palabras
-// const regExp = /[A-Za-z0-9]/i;//solo se acepta letras o numeros
-// console.log(regExp.test('josé 122'));//true
-// console.log(regExp.test('$$$$'));//false
-// const regExp = /^\d+$/gi;// con esta exprecion se acemptan solo numeros
-// console.log(regExp.test('jose123'));//false
-// console.log(regExp.test('123'));//true
-// const regExp = /^[a-zA-Z ]*$/;//con esta exprecion se acemptan solo letras
-// console.log(regExp.test('123'));//false
-// console.log(regExp.test('sdwdwd'));//true
-// const regExp = /^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/;//valida un email
-// console.log(regExp.test('jose@jose.com'));//true
-// console.log(regExp.test('josejose.com'));//false
-// console.log(regExp.test('jose@jose'));//false
+const form = document.getElementById('form');
+const validacion = {
+	UserName: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/,
+	UserEmail:
+		/^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/,
+};
+
+form.addEventListener('submit', e => {
+	e.preventDefault();
+	const { userName, userEmail } = e.target;
+	const contentInputs = e.target.firstElementChild;
+	functionValidacion(
+		validacion.UserName,
+		userName.value,
+		contentInputs,
+		contentInputs.lastElementChild
+	);
+	functionValidacion(
+		validacion.UserEmail,
+		userEmail.value,
+		contentInputs.nextElementSibling,
+		contentInputs.nextElementSibling.lastElementChild
+	);
+	if (
+		validacion.UserName.test(userName.value) &&
+		validacion.UserEmail.test(userEmail.value)
+	) {
+		e.target.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.classList.add(
+			'form__content--submit--show'
+		);
+	} else {
+		e.target.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove(
+			'form__content--submit--show'
+		);
+	}
+});
+const functionValidacion = (
+	exprecion,
+	valorAValidar,
+	contentInputs,
+	formMsg
+) => {
+	if (exprecion.test(valorAValidar)) {
+		contentInputs.classList.remove('form__content--iconErr');
+		contentInputs.classList.add('form__content--iconCheck');
+		formMsg.classList.remove('form__msg--show');
+	} else {
+		contentInputs.classList.remove('form__content--iconCheck');
+		contentInputs.classList.add('form__content--iconErr');
+		formMsg.classList.add('form__msg--show');
+	}
+};

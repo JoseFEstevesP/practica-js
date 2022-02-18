@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>primer repaso</title>
+	</head>
+	<body>
+		<h1>primer repaso</h1>
+	</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Practica poo</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<header class="header">
+			<h1 class="header__title">Agrega Estudiantes y Profesores</h1>
+			<form action="#" class="form" id="form">
+				<input
+					type="text"
+					class="form__inputs"
+					name="nombre"
+					placeholder="Ingrese un nombre"
+					value="jose"
+				/>
+				<input
+					type="number"
+					class="form__inputs"
+					name="edad"
+					placeholder="Ingrese edad"
+					value="21"
+				/>
+				<select class="form__inputs" name="opsiones">
+					<option value="estudiante">estudiante</option>
+					<option value="profesor">profesor</option>
+				</select>
+				<button class="btn" type="submit">Enviar</button>
+			</form>
+		</header>
+		<main class="main">
+			<section
+				id="contentEstudiantes"
+				class="contentStudents"
+			></section>
+			<section
+				id="contentProfesores"
+				class="contentTeachers"
+			></section>
+		</main>
+		<template id="templateEstudiantes">
+			<article class="students">
+				<div class="students__contentNameCon">
+					<h3 class="students__title">jose</h3>
+					<span class="students__condition">Aprobado</span>
+				</div>
+				<p>
+					<b class="students__textEs"></b>
+					<span>
+						<span class="students__edad">22</span>
+						años
+					</span>
+				</p>
+				<button class="btn btn--aprobar">Aprobar</button>
+				<button class="btn btn--reprobar">Reprobar</button>
+			</article>
+		</template>
+		<template id="templateProfesores">
+			<article class="teachers">
+				<h3 class="teachers__title">ale</h3>
+				<p>
+					<b class="teachers__text">Profesor</b>
+					<span class="teachers__years">21</span> años
+				</p>
+			</article>
+		</template>
+		<script src="js/app.js"></script>
+	</body>
+</html>

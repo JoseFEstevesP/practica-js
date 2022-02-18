@@ -1,39 +1,32 @@
-// crea elementos y los inserta en el orden que ves llega
+/** @format */
+// para elementos estaticos
 // const lista = document.getElementById('lista');
 // const arrayPaises = ['Venezuela', 'España', 'Colombia', 'argentina'];
-// const fragment = document.createDocumentFragment()
+// const liTemplate = document.getElementById('liTemplate');
+// const fragme = document.createDocumentFragment();
 // arrayPaises.forEach(pais => {
-// 	const li = document.createElement('li');
-// 	li.textContent = pais;
-// 	fragment.appendChild(li);
+// 	const clone = liTemplate.content.cloneNode(true);
+// 	clone.querySelector('.text-primary').textContent = pais;
+// 	fragme.appendChild(clone);
 // });
-// lista.appendChild(fragment)
-// =================================================
-// crea elementos y los inserta en el orden inverso
-// const lista = document.getElementById('lista');
-// const arrayPaises = ['Venezuela', 'España', 'Colombia', 'argentina'];
-// const fragment = document.createDocumentFragment();
-// arrayPaises.forEach(pais => {
-// 	const newNode = document.createElement('li');
-// 	newNode.textContent = pais;
-// 	const referenceNode = fragment.firstChild;
-// 	fragment.insertBefore(newNode, referenceNode);
-// });
-// lista.appendChild(fragment);
-// practica de createElement
+// lista.appendChild(fragme);
+// para elementos q reierean un eventos (click...)
 const lista = document.getElementById('lista');
 const arrayPaises = ['Venezuela', 'España', 'Colombia', 'argentina'];
-const fragment = document.createDocumentFragment();
+const liTemplate = document.getElementById('liTemplate');
+const fragme = document.createDocumentFragment();
+const clickElement = () => console.log('diste click');
 arrayPaises.forEach(pais => {
-	const li = document.createElement('li');
-	li.className = 'list';
-	const bold = document.createElement('b');
-	bold.textContent = 'País: ';
-	const span = document.createElement('span');
-	span.className = 'text-primary';
-	span.textContent = `${pais}.`;
-	li.appendChild(bold);
-	li.appendChild(span);
-	fragment.appendChild(li);
+	const clone = liTemplate.content.firstElementChild.cloneNode(true);
+	clone.querySelector('.text-primary').textContent = pais;
+	clone.addEventListener('click', clickElement);
+	fragme.appendChild(clone);
 });
-lista.appendChild(fragment);
+lista.appendChild(fragme);
+// arrayPaises.forEach(pais => {
+// 	const clone = liTemplate.content.firstElementChild.cloneNode(true);
+// 	clone.querySelector('.text-primary').textContent = pais;
+// 	clone.addEventListener('click', () => console.log(`diste click ${pais}`));
+// 	fragme.appendChild(clone);
+// });
+// lista.appendChild(fragme);

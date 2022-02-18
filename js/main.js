@@ -1,32 +1,32 @@
-/** @format */
-// para elementos estaticos
-// const lista = document.getElementById('lista');
-// const arrayPaises = ['Venezuela', 'España', 'Colombia', 'argentina'];
-// const liTemplate = document.getElementById('liTemplate');
-// const fragme = document.createDocumentFragment();
-// arrayPaises.forEach(pais => {
-// 	const clone = liTemplate.content.cloneNode(true);
-// 	clone.querySelector('.text-primary').textContent = pais;
-// 	fragme.appendChild(clone);
-// });
-// lista.appendChild(fragme);
-// para elementos q reierean un eventos (click...)
-const lista = document.getElementById('lista');
-const arrayPaises = ['Venezuela', 'España', 'Colombia', 'argentina'];
-const liTemplate = document.getElementById('liTemplate');
-const fragme = document.createDocumentFragment();
-const clickElement = () => console.log('diste click');
-arrayPaises.forEach(pais => {
-	const clone = liTemplate.content.firstElementChild.cloneNode(true);
-	clone.querySelector('.text-primary').textContent = pais;
-	clone.addEventListener('click', clickElement);
-	fragme.appendChild(clone);
+const list = document.getElementById('lista');
+const templeteLi = document.getElementById('liTemplete').content;
+const fragment = document.createDocumentFragment();
+const cartObjet = {};
+const addToCart = e => {
+	const product = {
+		title: e.target.dataset.fruta,
+		amount: 1,
+	};
+	if (cartObjet.hasOwnProperty(product.title)) {
+		product.amount = cartObjet[product.title].amount + 1;
+	}
+	cartObjet[product.title] = product;
+	printCart();
+};
+const printCart = () => {
+	list.textContent = '';
+	Object.values(cartObjet).forEach(item => {
+		const clone = templeteLi.firstElementChild.cloneNode(true);
+		clone.querySelector('.liProduct__product').textContent =
+			item.title;
+		clone.querySelector('.liProduct__amount').textContent =
+			item.amount;
+		fragment.appendChild(clone);
+	});
+	list.appendChild(fragment);
+};
+document.body.addEventListener('click', e => {
+	if (e.target.classList.contains('card__btn')) {
+		addToCart(e);
+	}
 });
-lista.appendChild(fragme);
-// arrayPaises.forEach(pais => {
-// 	const clone = liTemplate.content.firstElementChild.cloneNode(true);
-// 	clone.querySelector('.text-primary').textContent = pais;
-// 	clone.addEventListener('click', () => console.log(`diste click ${pais}`));
-// 	fragme.appendChild(clone);
-// });
-// lista.appendChild(fragme);

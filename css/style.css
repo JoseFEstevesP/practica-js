@@ -1,0 +1,20 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+}
+body {
+	width: 100%;
+	/* min-height: 100vh; */
+	margin: 0;
+	/* position: relative; */
+	font-size: 2rem;
+	color: #fff;
+	background-color: #333;
+}
+.list {
+	padding: 10px;
+}
+.text-primary {
+	color: rgb(255, 58, 58);
+}

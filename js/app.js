@@ -11,13 +11,15 @@ const templateEstudiantes = document.getElementById(
 const templateProfesores = document.getElementById(
 	'templateProfesores'
 ).content;
+const alert = document.getElementById('alert');
 const estudiantes = [];
 const profesores = [];
 document.addEventListener('click', e => {
-	if (e.target.dataset.nombre) {
+	const dateSetUdi = +e.target.dataset.uid;
+	if (dateSetUdi) {
 		if (e.target.matches('.btn--aprobar')) {
 			estudiantes.map(item => {
-				if (item.nombre === e.target.dataset.nombre) {
+				if (item.uid === dateSetUdi) {
 					item.setEstado = true;
 				}
 				return item;
@@ -25,7 +27,7 @@ document.addEventListener('click', e => {
 		}
 		if (e.target.matches('.btn--reprobar')) {
 			estudiantes.map(item => {
-				if (item.nombre === e.target.dataset.nombre) {
+				if (item.uid === dateSetUdi) {
 					item.setEstado = false;
 				}
 				return item;
@@ -36,8 +38,13 @@ document.addEventListener('click', e => {
 });
 form.addEventListener('submit', e => {
 	e.preventDefault();
+	alert.classList.remove('alert--show');
 	const datos = new FormData(form);
 	const [nombre, edad, opsiones] = [...datos.values()];
+	if (!nombre.trim() || !edad.trim() || !opsiones.trim()) {
+		alert.classList.add('alert--show');
+		return;
+	}
 	if (opsiones === 'estudiante') {
 		const estudiante = new Estudiante(nombre, edad);
 		estudiantes.push(estudiante);
@@ -53,6 +60,7 @@ class Persona {
 	constructor(nombre, edad) {
 		this.nombre = nombre;
 		this.edad = edad;
+		this.uid = Date.now();
 	}
 	static pintarPersonaUI(persona, tipo) {
 		if (tipo === 'estudiante') {
@@ -113,9 +121,8 @@ class Estudiante extends Persona {
 			.#estado
 			? 'Aprobado'
 			: 'Reprobado';
-		clone.querySelector('.btn--aprobar').dataset.nombre = this.nombre;
-		clone.querySelector('.btn--reprobar').dataset.nombre =
-			this.nombre;
+		clone.querySelector('.btn--aprobar').dataset.uid = this.uid;
+		clone.querySelector('.btn--reprobar').dataset.uid = this.uid;
 		return clone;
 	}
 }

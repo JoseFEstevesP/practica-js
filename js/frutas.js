@@ -1,12 +1,13 @@
-export const sandia = '🍉';
-export function platono() {
+const sandia = '🍉';
+function platono() {
 	console.log('🍌');
 }
-export const ceresas = () => {
+const ceresas = () => {
 	console.log('🍒');
 };
-export class Frutas {
+class Frutas {
 	constructor(nombre) {
 		this.nombre = nombre;
 	}
 }
+export { sandia, platono, ceresas, Frutas };

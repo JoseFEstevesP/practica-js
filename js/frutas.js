@@ -1,5 +1,6 @@
 const sandia = '🍉';
-function platono() {
+// export default sandia;
+export default function () {
 	console.log('🍌');
 }
 const ceresas = () => {
@@ -10,4 +11,4 @@ class Frutas {
 		this.nombre = nombre;
 	}
 }
-export { sandia, platono, ceresas, Frutas };
+export { sandia, ceresas, Frutas };

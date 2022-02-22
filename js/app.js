@@ -1,4 +1,4 @@
-import { sandia, platono, ceresas, Frutas } from './frutas.js';
+import platono, { sandia, ceresas, Frutas } from './frutas.js';
 console.log(sandia);
 platono();
 ceresas();

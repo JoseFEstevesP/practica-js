@@ -6,9 +6,33 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>primer repaso</title>
+		<title>todo list</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script defer src="js/app.js" type="module"></script>
 	</head>
 	<body>
-		<h1>primer repaso</h1>
+		<h1>Todo list</h1>
+		<article class="content">
+			<div class="msg">
+				<p class="msg__text">Campo vacío</p>
+			</div>
+			<form action="#" id="form" class="formulario" id="formulario">
+				<input
+					value="todo 1"
+					name="todo"
+					type="text"
+					placeholder="introdusca su tarea"
+					class="formulario__input"
+				/>
+				<button type="submit" class="formulario__btn">Añadir</button>
+			</form>
+		</article>
+		<section id="contentList" class="contentList"></section>
+		<template id="tItem">
+			<div class="item">
+				<p class="item__text">frhfrufh</p>
+				<button class="item__btn">Eliminar</button>
+			</div>
+		</template>
 	</body>
 </html>
